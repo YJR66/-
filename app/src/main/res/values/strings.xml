@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Virtual Camera</string>
+
+    <!-- Notification -->
+    <string name="notification_title">Virtual Camera Active</string>
+    <string name="notification_text">Custom frames are being rendered. Tap to open.</string>
+    <string name="notification_channel_name">Virtual Camera Service</string>
+    <string name="stop_service">Stop</string>
+
+    <!-- PreviewActivity -->
+    <string name="switch_camera">Switch Camera</string>
+    <string name="select_provider">Set Provider</string>
+    <string name="camera_error">Camera error: %1$s</string>
+    <string name="permission_denied">Camera permission is required to use this app.</string>
+
+    <!-- ProviderSelectorFragment -->
+    <string name="select_provider_title">Choose Frame Provider</string>
+    <string name="provider_canvas">Animated Canvas (Demo)</string>
+    <string name="provider_static">Static Image</string>
+    <string name="cancel">Cancel</string>
+    <string name="provider_applied">Provider updated.</string>
+</resources>
