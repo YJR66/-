@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import com.virtualcamera.virtualcamera.FrameProviderBase
+import kotlin.math.sin
 
 /**
  * A [com.virtualcamera.virtualcamera.FrameProvider] that renders each frame by
@@ -96,7 +97,7 @@ class DemoCanvasProvider : CanvasDrawProvider() {
         canvas.drawRect(RectF(0f, 0f, width.toFloat(), height.toFloat()), bgPaint)
 
         // Pulsing circle with complementary hue
-        val pulse = (Math.sin(t * 2.0) * 0.08 + 0.30).toFloat()
+        val pulse = (sin(t * 2.0) * 0.08 + 0.30).toFloat()
         circlePaint.color = Color.HSVToColor(floatArrayOf((hue + 180f) % 360f, 0.8f, 0.9f))
         canvas.drawCircle(width / 2f, height / 2f, width * pulse, circlePaint)
 

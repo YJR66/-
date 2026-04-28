@@ -20,6 +20,7 @@ import android.util.Size
 import android.view.Surface
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
+import kotlin.math.abs
 
 /**
  * Camera2-based pipeline that:
@@ -237,7 +238,7 @@ class CameraStreamPipeline(
     private fun chooseBestSize(sizes: Array<Size>?, targetW: Int, targetH: Int): Size {
         if (sizes.isNullOrEmpty()) return Size(targetW, targetH)
         val targetArea = targetW.toLong() * targetH
-        return sizes.minByOrNull { Math.abs(it.width.toLong() * it.height - targetArea) }
+        return sizes.minByOrNull { abs(it.width.toLong() * it.height - targetArea) }
             ?: Size(targetW, targetH)
     }
 

@@ -6,6 +6,7 @@ import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.util.Log
 import com.virtualcamera.virtualcamera.FrameProviderBase
+import kotlin.math.abs
 
 /**
  * A [com.virtualcamera.virtualcamera.FrameProvider] that extracts and returns
@@ -92,7 +93,7 @@ class VideoFrameProvider(
 
         // Skip the (expensive) seek if we are still within the same frame interval
         val cached = cachedBitmap
-        if (cached != null && Math.abs(positionUs - lastSeekUs) < MIN_SEEK_INTERVAL_US) {
+        if (cached != null && abs(positionUs - lastSeekUs) < MIN_SEEK_INTERVAL_US) {
             return cached
         }
 
