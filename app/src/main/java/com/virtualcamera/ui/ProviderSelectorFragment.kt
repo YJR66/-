@@ -47,9 +47,9 @@ class ProviderSelectorFragment : DialogFragment() {
     ) { uri ->
         if (uri == null) return@registerForActivityResult
         try {
-            val stream = requireContext().contentResolver.openInputStream(uri)
-            val bitmap = BitmapFactory.decodeStream(stream)
-            stream?.close()
+            val bitmap = requireContext().contentResolver.openInputStream(uri)?.use { stream ->
+                BitmapFactory.decodeStream(stream)
+            }
             if (bitmap != null) {
                 applyProvider(StaticImageProvider(bitmap))
             } else {
@@ -59,7 +59,13 @@ class ProviderSelectorFragment : DialogFragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        } catch (e: Exception) {
+        } catch (e: java.io.IOException) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.no_image_selected),
+                Toast.LENGTH_SHORT
+            ).show()
+        } catch (e: SecurityException) {
             Toast.makeText(
                 requireContext(),
                 getString(R.string.no_image_selected),
