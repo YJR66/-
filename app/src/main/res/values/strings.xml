@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Virtual Camera</string>
+    <string name="app_name">虚拟摄像头</string>
 
-    <!-- Notification -->
-    <string name="notification_title">Virtual Camera Active</string>
-    <string name="notification_text">Custom frames are being rendered. Tap to open.</string>
-    <string name="notification_channel_name">Virtual Camera Service</string>
-    <string name="stop_service">Stop</string>
+    <!-- 通知 -->
+    <string name="notification_title">虚拟摄像头运行中</string>
+    <string name="notification_text">正在渲染自定义画面，点击打开。</string>
+    <string name="notification_channel_name">虚拟摄像头服务</string>
+    <string name="stop_service">停止</string>
 
-    <!-- PreviewActivity -->
-    <string name="switch_camera">Switch Camera</string>
-    <string name="select_provider">Set Provider</string>
-    <string name="camera_error">Camera error: %1$s</string>
-    <string name="permission_denied">Camera permission is required to use this app.</string>
+    <!-- 主界面 -->
+    <string name="switch_camera">✦ 切换摄像头</string>
+    <string name="select_provider">✦ 选择画面来源</string>
+    <string name="camera_error">摄像头错误：%1$s</string>
+    <string name="permission_denied">使用本应用需要摄像头权限。</string>
 
-    <!-- ProviderSelectorFragment -->
-    <string name="select_provider_title">Choose Frame Provider</string>
-    <string name="provider_canvas">Animated Canvas (Demo)</string>
-    <string name="provider_static">Static Image</string>
-    <string name="cancel">Cancel</string>
-    <string name="provider_applied">Provider updated.</string>
+    <!-- 画面来源选择 -->
+    <string name="select_provider_title">✧ 选择画面来源 ✧</string>
+    <string name="provider_canvas">🎨 动态画布（演示）</string>
+    <string name="provider_static">🖼️ 静态图片</string>
+    <string name="cancel">✕ 取消</string>
+    <string name="provider_applied">✔ 画面来源已更新！</string>
+    <string name="no_image_selected">⚠ 无法解码所选图片，请重试。</string>
 </resources>

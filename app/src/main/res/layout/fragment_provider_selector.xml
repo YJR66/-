@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="@drawable/bg_dialog_anime">
 
     <TextView
         android:layout_width="match_parent"
@@ -12,26 +13,31 @@
         android:text="@string/select_provider_title"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
+        android:textColor="@color/anime_pink"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
 
-    <!-- Built-in: animated canvas demo -->
-    <Button
+    <!-- 动态画布演示 -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnProviderCanvas"
+        style="@style/AnimeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/provider_canvas"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="10dp" />
 
-    <!-- Built-in: static image (placeholder) -->
-    <Button
+    <!-- 静态图片（点击后选择图片） -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnProviderStatic"
+        style="@style/AnimeButton.Lavender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/provider_static"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="20dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCancel"
+        style="@style/AnimeButton.Cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/cancel" />

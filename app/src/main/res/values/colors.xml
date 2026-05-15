@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 动漫风配色 -->
+    <color name="anime_bg">#12082E</color>
+    <color name="anime_surface">#1E0F3D</color>
+    <color name="anime_pink">#FF6B9D</color>
+    <color name="anime_pink_dark">#CC4477</color>
+    <color name="anime_lavender">#B06FFF</color>
+    <color name="anime_lavender_dark">#8040CC</color>
+    <color name="anime_sky">#67C8F9</color>
+    <color name="anime_text">#FFF0FB</color>
+    <color name="anime_text_hint">#AA88BB</color>
+    <color name="anime_cancel_bg">#3D2060</color>
+    <color name="anime_divider">#4D2080</color>
+    <color name="anime_bar_top">#FF6B9D</color>
+
+    <!-- 保留兼容旧引用 -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

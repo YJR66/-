@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:background="@color/anime_bg">
 
     <!-- Full-screen preview surface; frames drawn here by CameraStreamPipeline -->
     <SurfaceView
@@ -21,23 +21,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="@android:color/black"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="16dp"
+        android:background="@drawable/bg_control_bar"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSwitch"
+            style="@style/AnimeButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:text="@string/switch_camera" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSelectProvider"
+            style="@style/AnimeButton.Lavender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
