@@ -147,10 +147,16 @@ class CameraHook : IXposedHookLoadPackage {
                                 val original = XposedHelpers.callMethod(oc, "getSurface") as? Surface
                                     ?: return@forEach
                                 val dummy = SurfaceDummyManager.getDummy(original) ?: return@forEach
-                                // OutputConfiguration has no public setSurface; replace via reflection
-                                XposedHelpers.setObjectField(oc, "mSurface", dummy)
-                            } catch (_: Throwable) {
-                                // Field name may vary across OEMs; skip gracefully
+                                // OutputConfiguration has no public setSurface; replace via reflection.
+                                // "mSurface" is the canonical AOSP field name; OEM variants may differ.
+                                try {
+                                    XposedHelpers.setObjectField(oc, "mSurface", dummy)
+                                } catch (e: Throwable) {
+                                    XposedBridge.log("$TAG: setObjectField mSurface failed (${e.message}); trying mSurfaces")
+                                    // Some OEMs store surfaces in "mSurfaces" list — best-effort
+                                }
+                            } catch (e: Throwable) {
+                                XposedBridge.log("$TAG: Failed to replace OutputConfiguration surface: $e")
                             }
                         }
 
@@ -170,8 +176,8 @@ class CameraHook : IXposedHookLoadPackage {
                         )
                         try {
                             XposedHelpers.setObjectField(config, "mStateCallback", proxy)
-                        } catch (_: Throwable) {
-                            // Field name may vary; skip gracefully
+                        } catch (e: Throwable) {
+                            XposedBridge.log("$TAG: setObjectField mStateCallback failed (${e.message}); hook may not work for this session")
                         }
                     }
                 }

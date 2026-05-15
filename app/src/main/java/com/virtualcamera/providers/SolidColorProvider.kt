@@ -14,7 +14,7 @@ import com.virtualcamera.virtualcamera.FrameProviderBase
  */
 class SolidColorProvider(private val color: Int = Color.GREEN) : FrameProviderBase() {
 
-    private val paint = Paint().apply { this.color = this@SolidColorProvider.color }
+    private val fillPaint = Paint().also { it.color = color }
     private var frameBitmap: Bitmap? = null
 
     override fun onFrameRequested(width: Int, height: Int, timestampNs: Long): Bitmap? {
@@ -27,7 +27,7 @@ class SolidColorProvider(private val color: Int = Color.GREEN) : FrameProviderBa
             Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888).also { frameBitmap = it }
         }
 
-        Canvas(bmp).drawRect(RectF(0f, 0f, width.toFloat(), height.toFloat()), paint)
+        Canvas(bmp).drawRect(RectF(0f, 0f, width.toFloat(), height.toFloat()), fillPaint)
         return bmp
     }
 

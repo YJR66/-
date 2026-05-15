@@ -2,6 +2,7 @@ package com.virtualcamera.xposed
 
 import android.graphics.SurfaceTexture
 import android.view.Surface
+import com.virtualcamera.xposed.VirtualFrameInjector
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -35,7 +36,12 @@ object SurfaceDummyManager {
     fun createDummyFor(original: Surface): Surface? {
         if (!original.isValid) return null
         // Create a SurfaceTexture that receives (and discards) real camera frames
-        val st = SurfaceTexture(false).also { it.setDefaultBufferSize(1280, 720) }
+        val st = SurfaceTexture(false).also {
+            it.setDefaultBufferSize(
+                VirtualFrameInjector.DEFAULT_FRAME_WIDTH,
+                VirtualFrameInjector.DEFAULT_FRAME_HEIGHT
+            )
+        }
         val dummy = Surface(st)
         originalToDummy[original] = dummy
         dummySurfaceTextures[dummy] = st

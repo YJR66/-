@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.Surface
 import com.virtualcamera.virtualcamera.FrameProvider
 import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Drives the virtual-frame injection loop for active camera sessions.
@@ -26,9 +27,15 @@ object VirtualFrameInjector {
     private const val TAG = "VirtualCamera/Injector"
     private const val FRAME_INTERVAL_MS = 33L // ~30 fps
 
-    /** sessionHashCode → (HandlerThread, surfaces) */
+    /** Default virtual-frame dimensions used when surface dimensions are unknown. */
+    const val DEFAULT_FRAME_WIDTH = 1280
+    const val DEFAULT_FRAME_HEIGHT = 720
+
+    /** sessionKey → HandlerThread */
     private val activeSessions =
         ConcurrentHashMap<Int, Pair<HandlerThread, List<Surface>>>()
+
+    private val threadCounter = AtomicInteger(0)
 
     /**
      * Start injecting virtual frames from [provider] into every surface in
@@ -38,7 +45,7 @@ object VirtualFrameInjector {
     fun start(sessionKey: Int, surfaces: List<Surface>, provider: FrameProvider) {
         stop(sessionKey) // cancel any previous session with same key
 
-        val thread = HandlerThread("VCamInject-$sessionKey").also { it.start() }
+        val thread = HandlerThread("VCamInject-${threadCounter.incrementAndGet()}").also { it.start() }
         activeSessions[sessionKey] = thread to surfaces
         scheduleFrame(Handler(thread.looper), surfaces, provider)
     }
@@ -60,10 +67,15 @@ object VirtualFrameInjector {
         handler.post(object : Runnable {
             override fun run() {
                 val validSurfaces = surfaces.filter { it.isValid }
-                if (validSurfaces.isEmpty()) return
+                if (validSurfaces.isEmpty()) {
+                    // All surfaces gone — stop rescheduling to avoid wasting resources
+                    return
+                }
 
                 try {
-                    val bitmap = provider.onFrameRequested(1280, 720, System.nanoTime())
+                    val bitmap = provider.onFrameRequested(
+                        DEFAULT_FRAME_WIDTH, DEFAULT_FRAME_HEIGHT, System.nanoTime()
+                    )
                     if (bitmap != null) {
                         validSurfaces.forEach { surface -> drawTo(bitmap, surface) }
                     }

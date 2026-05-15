@@ -26,9 +26,9 @@ class HookConfigActivity : AppCompatActivity() {
         binding = ActivityHookConfigBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Use MODE_WORLD_READABLE so that XSharedPreferences can read without root
-        @Suppress("DEPRECATION")
-        prefs = getSharedPreferences(HookSettings.PREFS_NAME, Context.MODE_WORLD_READABLE)
+        // Use MODE_PRIVATE; LSPosed's XSharedPreferences handles cross-process reading
+        // internally without requiring world-readable files.
+        prefs = getSharedPreferences(HookSettings.PREFS_NAME, Context.MODE_PRIVATE)
 
         loadCurrentSettings()
         setupListeners()
