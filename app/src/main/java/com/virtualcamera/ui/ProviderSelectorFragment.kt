@@ -1,14 +1,15 @@
 package com.virtualcamera.ui
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
 import com.virtualcamera.R
 import com.virtualcamera.databinding.FragmentProviderSelectorBinding
-import com.virtualcamera.providers.CanvasDrawProvider
 import com.virtualcamera.providers.DemoCanvasProvider
 import com.virtualcamera.providers.StaticImageProvider
 import com.virtualcamera.virtualcamera.CameraFacing
@@ -40,6 +41,33 @@ class ProviderSelectorFragment : DialogFragment() {
 
     private lateinit var facing: CameraFacing
 
+    /** Launches the system image picker; result decoded into a StaticImageProvider. */
+    private val imagePickerLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri ->
+        if (uri == null) return@registerForActivityResult
+        try {
+            val stream = requireContext().contentResolver.openInputStream(uri)
+            val bitmap = BitmapFactory.decodeStream(stream)
+            stream?.close()
+            if (bitmap != null) {
+                applyProvider(StaticImageProvider(bitmap))
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.no_image_selected),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.no_image_selected),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         facing = CameraFacing.valueOf(requireArguments().getString(ARG_FACING)!!)
@@ -62,7 +90,8 @@ class ProviderSelectorFragment : DialogFragment() {
         }
 
         binding.btnProviderStatic.setOnClickListener {
-            applyProvider(StaticImageProvider())
+            // Open system image picker; result handled by imagePickerLauncher
+            imagePickerLauncher.launch("image/*")
         }
 
         binding.btnCancel.setOnClickListener { dismiss() }

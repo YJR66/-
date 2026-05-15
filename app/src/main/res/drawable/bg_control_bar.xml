@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Top accent border -->
+    <item android:height="2dp" android:gravity="top">
+        <shape>
+            <solid android:color="@color/anime_bar_top" />
+        </shape>
+    </item>
+    <!-- Main background gradient -->
+    <item android:top="2dp">
+        <shape>
+            <gradient
+                android:angle="90"
+                android:startColor="@color/anime_surface"
+                android:endColor="@color/anime_bg"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>
