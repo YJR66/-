@@ -19,6 +19,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VirtualCamera">
 
+        <!-- LSPosed module metadata -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="将所有 App 的摄像头画面替换为虚拟帧（需 LSPosed/EdXposed）" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="53" />
+
         <activity
             android:name=".ui.PreviewActivity"
             android:exported="true"
@@ -28,6 +39,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.HookConfigActivity"
+            android:exported="false"
+            android:label="@string/hook_config_title"
+            android:screenOrientation="portrait" />
 
         <!--
             foregroundServiceType="camera" is required on Android 14+.

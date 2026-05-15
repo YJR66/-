@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF121212">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/hook_config_title"
+            android:textColor="#FFFFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="@string/hook_config_subtitle"
+            android:textColor="#FFAAAAAA"
+            android:textSize="13sp" />
+
+        <!-- Frame-source radio group -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/hook_frame_source_label"
+            android:textColor="#FFCCCCCC"
+            android:textSize="15sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupSource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
+
+            <RadioButton
+                android:id="@+id/radioCanvas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:buttonTint="#FF6200EE"
+                android:padding="8dp"
+                android:text="@string/provider_canvas"
+                android:textColor="#FFFFFFFF"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/radioSolidColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="#FF6200EE"
+                android:padding="8dp"
+                android:text="@string/hook_solid_color_option"
+                android:textColor="#FFFFFFFF"
+                android:textSize="15sp" />
+        </RadioGroup>
+
+        <!-- Color hex input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/hook_color_hint"
+            android:textColor="#FFCCCCCC"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editHexColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:background="#FF1E1E2E"
+            android:fontFamily="monospace"
+            android:hint="#FF00FF00"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FF666666"
+            android:textSize="15sp" />
+
+        <!-- Apply button -->
+        <Button
+            android:id="@+id/btnApply"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:backgroundTint="#FF6200EE"
+            android:text="@string/hook_apply"
+            android:textColor="#FFFFFFFF"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</ScrollView>

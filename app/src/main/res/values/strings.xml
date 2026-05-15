@@ -21,4 +21,15 @@
     <string name="cancel">✕ 取消</string>
     <string name="provider_applied">✔ 画面来源已更新！</string>
     <string name="no_image_selected">⚠ 无法解码所选图片，请重试。</string>
+
+    <!-- Hook 配置界面 -->
+    <string name="hook_config_title">🔧 全局虚拟摄像头设置</string>
+    <string name="hook_config_subtitle">需要 Root 权限及 LSPosed/Xposed 框架已启用本模块</string>
+    <string name="hook_frame_source_label">虚拟画面来源</string>
+    <string name="hook_solid_color_option">🎨 纯色填充</string>
+    <string name="hook_color_hint">纯色颜色（十六进制，如 #FF00FF00）</string>
+    <string name="hook_apply">✔ 保存设置</string>
+    <string name="hook_settings_saved">✔ 设置已保存，下次应用打开摄像头时生效。</string>
+    <string name="hook_invalid_color">⚠ 颜色格式不正确，请使用 #AARRGGBB 格式。</string>
+    <string name="open_hook_config">⚙ 全局 Hook 设置</string>
 </resources>

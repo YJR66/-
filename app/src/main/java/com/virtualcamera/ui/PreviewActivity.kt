@@ -140,6 +140,10 @@ class PreviewActivity : AppCompatActivity() {
                 .newInstance(currentFacing)
                 .show(supportFragmentManager, ProviderSelectorFragment.TAG)
         }
+
+        binding.btnHookConfig.setOnClickListener {
+            startActivity(Intent(this, HookConfigActivity::class.java))
+        }
     }
 
     // -------------------------------------------------------------------------

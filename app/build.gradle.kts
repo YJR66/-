@@ -40,6 +40,10 @@ android {
 }
 
 dependencies {
+    // XposedBridge API (compile-time only; provided at runtime by LSPosed/EdXposed)
+    compileOnly("de.robv.android.xposed:api:82")
+    compileOnly("de.robv.android.xposed:api:82:sources")
+
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
